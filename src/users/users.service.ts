@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
+import * as bcryptjs from 'bcryptjs';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -48,9 +49,16 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
-  async findByEmailWithPassword(email: string) {
+  /* async findByEmailWithPassword(email: string) {
     return this.usersRepository.findOne({
       where: { email },
+      select: ['id', 'username', 'email', 'password', 'role'],
+    });
+  } */
+
+  async findByUsernameOrEmailWithPassword(usernameOrEmail: string) {
+    return this.usersRepository.findOne({
+      where: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
       select: ['id', 'username', 'email', 'password', 'role'],
     });
   }
@@ -69,11 +77,15 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    const { username, email } = updateUserDto;
+    const { username, email, password } = updateUserDto;
 
     await this.checkUsernameAndEmail(username, email, id);
 
-    await this.usersRepository.update(id, { ...updateUserDto });
+    if (password) {
+      updateUserDto.password = await bcryptjs.hash(password, 10);
+    }
+
+    await this.usersRepository.update(id, updateUserDto);
     return this.findOne(id);
   }
 

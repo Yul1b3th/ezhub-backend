@@ -58,11 +58,18 @@ El servidor estará disponible en http://localhost:8000 por defecto.
 
 ## 🚧 Endpoints de la API
 
+## 🚧 Endpoints de la API
+
+### Autenticación
+
+- **POST /api/auth/register**: Registra un nuevo usuario.
+- **POST /api/auth/login**: Inicia sesión con un usuario existente.
+- **GET /api/auth/profile**: Obtiene el perfil del usuario actualmente autenticado.
+
 ### Usuarios
 
 - **GET /api/users**: Obtiene todos los usuarios.
 - **GET /api/users/:id**: Obtiene un usuario por ID.
-- **POST /api/users**: Crea un nuevo usuario.
 - **PATCH /api/users/:id**: Actualiza un usuario existente.
 - **DELETE /api/users/:id**: Elimina un usuario.
 

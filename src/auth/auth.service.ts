@@ -17,42 +17,40 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async register({ username, email, password }: RegisterDto) {
-    const user = await this.usersService.findOneByEmail(email);
-
-    if (user) {
-      throw new BadRequestException('User already exists');
-    }
+  async register(registerDto: RegisterDto) {
+    const { password, ...userData } = registerDto;
 
     await this.usersService.create({
-      username,
-      email,
       password: await bcryptjs.hash(password, 10),
+      ...userData,
     });
 
-    return {
-      username,
-      email,
-    };
+    return { password, ...userData };
   }
 
-  async login({ email, password }: LoginDto) {
-    const user = await this.usersService.findByEmailWithPassword(email);
+  async login({ usernameOrEmail, password }: LoginDto) {
+    const user = await this.usersService.findByUsernameOrEmailWithPassword(
+      usernameOrEmail,
+    );
     if (!user) {
-      throw new UnauthorizedException('email is wrong');
+      throw new UnauthorizedException('Username or email is wrong');
     }
 
     const isPasswordValid = await bcryptjs.compare(password, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('password is wrong');
+      throw new UnauthorizedException('Password is wrong');
     }
 
-    const payload = { email: user.email, role: user.role };
+    const payload = {
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    };
     const token = await this.jwtService.signAsync(payload);
 
     return {
       token,
-      email,
+      email: user.email,
     };
   }
 
