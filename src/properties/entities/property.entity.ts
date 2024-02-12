@@ -75,4 +75,7 @@ export class Property {
   @ManyToOne(() => User)
   @JoinColumn({ name: 'userEmail', referencedColumnName: 'email' })
   user: User;
+
+  @Column()
+  userEmail: string;
 }

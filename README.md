@@ -58,8 +58,6 @@ El servidor estará disponible en http://localhost:8000 por defecto.
 
 ## 🚧 Endpoints de la API
 
-## 🚧 Endpoints de la API
-
 ### Autenticación
 
 - **POST /api/auth/register**: Registra un nuevo usuario.
