@@ -41,6 +41,12 @@ export class Property {
   @Length(4, 50)
   country: string;
 
+  @Column('decimal', { precision: 10, scale: 7 })
+  latitude: number;
+
+  @Column('decimal', { precision: 10, scale: 7 })
+  longitude: number;
+
   @Column()
   @IsNumber()
   bedrooms: number;

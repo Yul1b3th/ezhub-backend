@@ -1,6 +1,11 @@
 import {
+  ArrayNotEmpty,
+  IsArray,
   IsBoolean,
   IsDate,
+  IsDateString,
+  IsEnum,
+  IsInt,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -9,6 +14,7 @@ import {
 } from 'class-validator';
 
 import { Transform } from 'class-transformer';
+import { BedType } from '../enums/bed-type.enum';
 
 export class CreateRoomDto {
   @Transform(({ value }) => value.trim())
@@ -35,17 +41,20 @@ export class CreateRoomDto {
   @IsNumber()
   room_size?: number;
 
+  @IsNotEmpty({ message: 'Bed type is required' })
+  @IsEnum(BedType)
+  bed_type: BedType;
+
+  /*   @Length(0, 500)
+  amenityIds?: string; */
+
   @IsOptional()
-  @IsNotEmpty()
-  @Length(1, 50)
-  bed_type?: string;
+  @IsArray()
+  //@ArrayNotEmpty()
+  amenityIds?: number[];
 
-  @Length(0, 500)
-  amenities?: string;
-
-  @IsNotEmpty({ message: 'Available from date is required' })
-  @IsDate({ message: 'Invalid date' })
-  available_from: Date;
+  @IsDateString()
+  available_from: string;
 
   @IsBoolean()
   utilities_included: boolean;
@@ -58,4 +67,7 @@ export class CreateRoomDto {
 
   @Length(0, 5000)
   photos: string;
+
+  @IsNotEmpty({ message: 'Propertyed type is required' })
+  propertyId: number;
 }

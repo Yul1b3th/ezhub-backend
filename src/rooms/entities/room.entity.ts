@@ -10,6 +10,7 @@ import {
 import {
   IsBoolean,
   IsDate,
+  IsDateString,
   IsNotEmpty,
   IsNumber,
   Length,
@@ -18,6 +19,9 @@ import {
 import { Property } from '../../properties/entities/property.entity';
 import { Transaction } from '../../transactions/entities/transaction.entity';
 import { Favorite } from '../../favorites/entities/favorite.entity';
+import { BedType } from '../enums/bed-type.enum';
+
+import { RoomAmenity } from '../../room-amenity/entities/room-amenity.entity';
 
 @Entity()
 export class Room {
@@ -47,19 +51,15 @@ export class Room {
   @IsNumber()
   room_size: number;
 
-  @Column()
-  @IsNotEmpty()
-  @Length(1, 50)
-  bed_type: string;
+  @Column({
+    type: 'enum',
+    enum: BedType,
+  })
+  bed_type: BedType;
 
   @Column()
-  @Length(0, 500)
-  amenities: string;
-
-  @Column()
-  @IsNotEmpty()
-  @IsDate()
-  available_from: Date;
+  @IsDateString()
+  available_from: string;
 
   @Column()
   @IsBoolean()
@@ -83,9 +83,22 @@ export class Room {
   @ManyToOne(() => Property, (property) => property.rooms)
   property: Property;
 
+  @Column()
+  propertyId: number;
+
   @OneToMany(() => Transaction, (transaction) => transaction.room)
   transactions: Transaction[];
 
   @OneToMany(() => Favorite, (favorite) => favorite.room)
   favorites: Favorite[];
+
+  @Column()
+  userEmail: string;
+
+  @OneToMany(() => RoomAmenity, (roomAmenity) => roomAmenity.room)
+  roomAmenities: RoomAmenity[];
+
+  /* @Column()
+  @Length(0, 500)
+  amenityIds: string; */
 }

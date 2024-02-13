@@ -17,6 +17,8 @@ import { RoomsModule } from './rooms/rooms.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { PreferencesModule } from './preferences/preferences.module';
+import { AmenityModule } from './amenity/amenity.module';
+import { RoomAmenityModule } from './room-amenity/room-amenity.module';
 
 @Module({
   imports: [
@@ -46,6 +48,8 @@ import { PreferencesModule } from './preferences/preferences.module';
     TransactionsModule,
     FavoritesModule,
     PreferencesModule,
+    AmenityModule,
+    RoomAmenityModule,
   ],
   controllers: [],
   providers: [],

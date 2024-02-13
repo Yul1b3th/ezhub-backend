@@ -1,4 +1,6 @@
 import {
+  IsLatitude,
+  IsLongitude,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -37,6 +39,16 @@ export class CreatePropertyDto {
   @IsNotEmpty({ message: 'country is required' })
   @Length(4, 50, { message: 'country must be between 4 and 20 characters' })
   country: string;
+
+  //@IsNotEmpty({ message: 'Latitude is required' })
+  @IsNumber()
+  @IsLatitude()
+  latitude: number;
+
+  //@IsNotEmpty({ message: 'Longitude is required' })
+  @IsNumber()
+  @IsLongitude()
+  longitude: number;
 
   @IsOptional()
   @IsNumber()

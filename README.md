@@ -83,6 +83,16 @@ El servidor estará disponible en http://localhost:8000 por defecto.
 
 **Nota:** Reemplaza **:id** con el ID de la propiedad correspondiente.
 
+### Habitaciones
+
+- **GET /api/rooms**: Obtiene todas las habitaciones.
+- **GET /api/rooms/:id**: Obtiene una habitación por ID.
+- **POST /api/rooms**: Crea una nueva habitación.
+- **PATCH /api/rooms/:id**: Actualiza una habitación existente.
+- **DELETE /api/rooms/:id**: Elimina una habitación.
+
+**Nota:** Reemplaza **:id** con el ID correspondiente de la habitación.
+
 ## 🤝 Contribuciones
 
 Si deseas colaborar en este proyecto o informar sobre problemas, no dudes en crear un "issue" o enviar un "pull request."

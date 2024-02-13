@@ -54,10 +54,11 @@ export class PropertiesService {
     user: UserActiveInterface,
   ) {
     await this.findOne(id, user);
-    return await this.propertiesRepository.update(id, {
+    await this.propertiesRepository.update(id, {
       ...updatePropertyDto,
       userEmail: user.email,
     });
+    return this.findOne(id, user);
   }
 
   async remove(id: number, user: UserActiveInterface): Promise<string> {
