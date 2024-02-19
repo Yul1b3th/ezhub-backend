@@ -10,6 +10,8 @@ import { AuthModule } from '../auth/auth.module';
 import { RoomAmenity } from '../room-amenity/entities/room-amenity.entity';
 import { Amenity } from '../amenity/entities/amenity.entity'; // importa Amenity
 import { AmenityModule } from '../amenity/amenity.module'; // importa AmenityModule
+import { PublicRoomsService } from './public-rooms.service';
+import { PublicRoomsController } from './public-rooms.controller';
 
 @Module({
   imports: [
@@ -23,8 +25,8 @@ import { AmenityModule } from '../amenity/amenity.module'; // importa AmenityMod
     AuthModule,
     AmenityModule,
   ],
-  controllers: [RoomsController],
-  providers: [RoomsService],
+  controllers: [RoomsController, PublicRoomsController],
+  providers: [RoomsService, PublicRoomsService],
   exports: [TypeOrmModule],
 })
 export class RoomsModule {}

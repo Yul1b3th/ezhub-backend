@@ -85,11 +85,18 @@ El servidor estará disponible en http://localhost:8000 por defecto.
 
 ### Habitaciones
 
-- **GET /api/rooms**: Obtiene todas las habitaciones.
-- **GET /api/rooms/:id**: Obtiene una habitación por ID.
-- **POST /api/rooms**: Crea una nueva habitación.
-- **PATCH /api/rooms/:id**: Actualiza una habitación existente.
-- **DELETE /api/rooms/:id**: Elimina una habitación.
+- **GET /api/rooms**: Obtiene todas las habitaciones. (JWT requerido)
+- **GET /api/rooms/:id**: Obtiene una habitación por ID. (JWT requerido)
+- **POST /api/rooms**: Crea una nueva habitación. (JWT requerido)
+- **PATCH /api/rooms/:id**: Actualiza una habitación existente. (JWT requerido)
+- **DELETE /api/rooms/:id**: Elimina una habitación. (JWT requerido)
+
+**Nota:** Reemplaza **:id** con el ID correspondiente de la habitación.
+
+### Habitaciones Públicas
+
+- **GET /api/public-rooms**: Obtiene todas las habitaciones públicas. (Sin JWT requerido)
+- **GET /api/public-rooms/:id**: Obtiene una habitación pública por ID. (Sin JWT requerido)
 
 **Nota:** Reemplaza **:id** con el ID correspondiente de la habitación.
 

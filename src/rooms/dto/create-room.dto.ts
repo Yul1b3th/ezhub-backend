@@ -41,9 +41,9 @@ export class CreateRoomDto {
   @IsNumber()
   room_size?: number;
 
-  @IsNotEmpty({ message: 'Bed type is required' })
+  // @IsNotEmpty({ message: 'Bed type is required' })
   @IsEnum(BedType)
-  bed_type: BedType;
+  bed_type?: BedType;
 
   /*   @Length(0, 500)
   amenityIds?: string; */
@@ -54,7 +54,7 @@ export class CreateRoomDto {
   amenityIds?: number[];
 
   @IsDateString()
-  available_from: string;
+  available_from?: string;
 
   @IsBoolean()
   utilities_included: boolean;
