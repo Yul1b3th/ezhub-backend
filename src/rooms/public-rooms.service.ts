@@ -1,20 +1,11 @@
-import {
-  BadRequestException,
-  Injectable,
-  Param,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Room } from './entities/room.entity';
-import { CreateRoomDto } from './dto/create-room.dto';
-import { UpdateRoomDto } from './dto/update-room.dto';
-import { UserActiveInterface } from '../common/interfaces/user-active.interface';
-import { Role } from '../common/enums/rol.enum';
 import { RoomAmenity } from '../room-amenity/entities/room-amenity.entity';
 import { Amenity } from '../amenity/entities/amenity.entity';
-import { ActiveUser } from 'src/common/decorators/active-user.decorator';
 
 @Injectable()
 export class PublicRoomsService {

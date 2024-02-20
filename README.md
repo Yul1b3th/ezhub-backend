@@ -75,11 +75,18 @@ El servidor estará disponible en http://localhost:8000 por defecto.
 
 ### Propiedades
 
-- **GET /api/properties**: Obtiene todas las propiedades.
-- **GET /api/properties/:id**: Obtiene una propiedad por ID.
-- **POST /api/properties**: Crea una nueva propiedad.
-- **PATCH /api/properties/:id**: Actualiza una propiedad existente.
-- **DELETE /api/properties/:id**: Elimina una propiedad.
+- **GET /api/properties**: Obtiene todas las propiedades. (JWT requerido)
+- **GET /api/properties/:id**: Obtiene una propiedad por ID. (JWT requerido)
+- **POST /api/properties**: Crea una nueva propiedad. (JWT requerido)
+- **PATCH /api/properties/:id**: Actualiza una propiedad existente. (JWT requerido)
+- **DELETE /api/properties/:id**: Elimina una propiedad. (JWT requerido)
+
+**Nota:** Reemplaza **:id** con el ID de la propiedad correspondiente.
+
+### Propiedades Públicas
+
+- **GET /api/properties**: Obtiene todas las propiedades públicas. (Sin JWT requerido)
+- **GET /api/properties/:id**: Obtiene una propiedad pública por ID. (Sin JWT requerido)
 
 **Nota:** Reemplaza **:id** con el ID de la propiedad correspondiente.
 
