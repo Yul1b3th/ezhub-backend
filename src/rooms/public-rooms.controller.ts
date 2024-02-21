@@ -15,4 +15,9 @@ export class PublicRoomsController {
   findOne(@Param('id') id: number) {
     return this.roomsService.findOne(id);
   }
+
+  @Get(':id/amenities')
+  findAmenities(@Param('id') id: number) {
+    return this.roomsService.findAmenities(id);
+  }
 }

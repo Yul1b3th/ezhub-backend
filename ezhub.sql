@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-02-2024 a las 16:21:05
+-- Tiempo de generación: 21-02-2024 a las 20:13:56
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -106,7 +106,8 @@ CREATE TABLE `property` (
 --
 
 INSERT INTO `property` (`id`, `name`, `details`, `address`, `city`, `country`, `latitude`, `longitude`, `bedrooms`, `bathrooms`, `property_size`, `smoking_allowed`, `pets_allowed`, `couples_allowed`, `occupantCount`, `deletedAt`, `userEmail`) VALUES
-(1, 'Mi Propiedad 1', 'Esta es una descripción detallada de mi propiedad.', 'Calle Falsa 123', 'Barcelona', 'España', '40.4167750', '-3.7037900', 4, 2, 150, 0, 1, 0, 1, NULL, 'user1@gmail.com');
+(1, 'Mi Propiedad 1', 'Esta es una descripción detallada de mi propiedad.', 'Calle Falsa 123', 'Barcelona', 'España', '41.3938875', '2.1768128', 4, 2, 150, 0, 1, 0, 1, NULL, 'user1@gmail.com'),
+(2, 'Mi Propiedad 2', 'Esta es una descripción detallada de mi propiedad.', 'Calle Falsa 123', 'Barcelona', 'España', '41.3955881', '2.1971930', 2, 1, 120, 0, 1, 0, 1, NULL, 'user2@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -137,10 +138,12 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `name`, `details`, `precio`, `is_available`, `room_size`, `bed_type`, `available_from`, `utilities_included`, `deposit_required`, `services_included`, `photos`, `deletedAt`, `propertyId`, `userEmail`) VALUES
-(1, 'Habitación 1', 'Habitación con vistas al mar', '350.00', 1, 9, 'Single bed', '2024-12-01T00:00:00.000Z', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '1.jpg', NULL, 1, 'user1@gmail.com'),
-(2, 'Habitación 2', 'Una habitación de lujo con vistas al mar.', '450.00', 1, 14, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '2.jpg', NULL, 1, 'user1@gmail.com'),
-(3, 'Habitación 3', 'Una habitación de lujo con vistas al mar.', '200.00', 1, 35, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '3.jpg', NULL, 1, 'user1@gmail.com'),
-(4, 'Habitación 4', 'Una habitación de lujo con vistas al mar.', '200.00', 1, 35, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '4.jpg', NULL, 1, 'user1@gmail.com');
+(1, 'Habitación 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', '350.00', 1, 13, 'Double bed', '2024-12-01T00:00:00.000Z', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '1.jpg', NULL, 1, 'user1@gmail.com'),
+(2, 'Habitación 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quibusdam sapiente animi architecto laborum repellat aperiam.', '450.00', 1, 12, 'Double bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '2.jpg', NULL, 1, 'user1@gmail.com'),
+(3, 'Habitación 3', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum voluptates repellendus cumque!', '300.00', 1, 11, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '3.jpg', NULL, 1, 'user1@gmail.com'),
+(4, 'Habitación 4', 'Lorem ipsum dolor sit amet consectetur.', '250.00', 1, 9, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '4.jpg', NULL, 1, 'user1@gmail.com'),
+(5, 'Habitación 5', 'Una habitación de lujo con vistas al mar.', '400.00', 1, 14, 'Double bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '5.jpg', NULL, 1, 'user1@gmail.com'),
+(6, 'Habitación 6', 'Una habitación de lujo con vistas al mar.', '200.00', 1, 35, 'Single bed', '2024-12-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '6.jpg', NULL, 2, 'user2@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -173,7 +176,13 @@ INSERT INTO `room_amenity` (`id`, `roomId`, `amenityId`) VALUES
 (22, 3, 9),
 (23, 4, 5),
 (24, 4, 2),
-(25, 4, 9);
+(25, 4, 9),
+(26, 5, 5),
+(27, 5, 2),
+(28, 5, 9),
+(29, 6, 5),
+(30, 6, 2),
+(31, 6, 9);
 
 -- --------------------------------------------------------
 
@@ -311,19 +320,19 @@ ALTER TABLE `preference`
 -- AUTO_INCREMENT de la tabla `property`
 --
 ALTER TABLE `property`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `room_amenity`
 --
 ALTER TABLE `room_amenity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `transaction`

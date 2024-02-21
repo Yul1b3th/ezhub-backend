@@ -105,6 +105,10 @@ El servidor estará disponible en http://localhost:8000 por defecto.
 - **GET /api/public-rooms**: Obtiene todas las habitaciones públicas. (Sin JWT requerido)
 - **GET /api/public-rooms/:id**: Obtiene una habitación pública por ID. (Sin JWT requerido)
 
+### Comodidades Públicas
+
+- **GET /api/public-rooms/:id/amenities**: Obtiene todas las comodidades de una habitación pública por ID. (Sin JWT requerido)
+
 **Nota:** Reemplaza **:id** con el ID correspondiente de la habitación.
 
 ## 🤝 Contribuciones

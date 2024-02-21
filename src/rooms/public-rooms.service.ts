@@ -29,4 +29,11 @@ export class PublicRoomsService {
     }
     return room;
   }
+  async findAmenities(roomId: number): Promise<Amenity[]> {
+    const roomAmenities = await this.roomAmenityRepository.find({
+      where: { room: { id: roomId } },
+      relations: ['amenity'],
+    });
+    return roomAmenities.map((ra) => ra.amenity);
+  }
 }
