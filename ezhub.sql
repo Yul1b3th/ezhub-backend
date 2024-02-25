@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2024 a las 20:13:56
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 25-02-2024 a las 22:05:30
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `amenity` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `amenity`
@@ -58,7 +58,7 @@ CREATE TABLE `favorite` (
   `deletedAt` datetime(6) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL,
   `roomId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,7 @@ CREATE TABLE `preference` (
   `dryer` tinyint(4) NOT NULL DEFAULT 0,
   `deletedAt` datetime(6) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -99,15 +99,15 @@ CREATE TABLE `property` (
   `occupantCount` int(11) NOT NULL,
   `deletedAt` datetime(6) DEFAULT NULL,
   `userEmail` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `property`
 --
 
 INSERT INTO `property` (`id`, `name`, `details`, `address`, `city`, `country`, `latitude`, `longitude`, `bedrooms`, `bathrooms`, `property_size`, `smoking_allowed`, `pets_allowed`, `couples_allowed`, `occupantCount`, `deletedAt`, `userEmail`) VALUES
-(1, 'Mi Propiedad 1', 'Esta es una descripción detallada de mi propiedad.', 'Calle Falsa 123', 'Barcelona', 'España', '41.3938875', '2.1768128', 4, 2, 150, 0, 1, 0, 1, NULL, 'user1@gmail.com'),
-(2, 'Mi Propiedad 2', 'Esta es una descripción detallada de mi propiedad.', 'Calle Falsa 123', 'Barcelona', 'España', '41.3955881', '2.1971930', 2, 1, 120, 0, 1, 0, 1, NULL, 'user2@gmail.com');
+(1, 'Mi Propiedad 1', 'Esta es una descripción detallada de mi propiedad.', 'Calle Falsa 123', 'Barcelona', 'España', 41.3938875, 2.1768128, 4, 2, 150, 0, 1, 0, 1, NULL, 'user1@gmail.com'),
+(2, 'Mi Propiedad 2', 'Esta es una descripción detallada de mi propiedad.', 'Calle Falsa 123', 'Barcelona', 'España', 41.3955881, 2.1971930, 2, 1, 120, 0, 1, 0, 1, NULL, 'user2@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -131,19 +131,19 @@ CREATE TABLE `room` (
   `deletedAt` datetime(6) DEFAULT NULL,
   `propertyId` int(11) NOT NULL,
   `userEmail` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `room`
 --
 
 INSERT INTO `room` (`id`, `name`, `details`, `precio`, `is_available`, `room_size`, `bed_type`, `available_from`, `utilities_included`, `deposit_required`, `services_included`, `photos`, `deletedAt`, `propertyId`, `userEmail`) VALUES
-(1, 'Habitación 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', '350.00', 1, 13, 'Double bed', '2024-12-01T00:00:00.000Z', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '1.jpg', NULL, 1, 'user1@gmail.com'),
-(2, 'Habitación 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quibusdam sapiente animi architecto laborum repellat aperiam.', '450.00', 1, 12, 'Double bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '2.jpg', NULL, 1, 'user1@gmail.com'),
-(3, 'Habitación 3', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum voluptates repellendus cumque!', '300.00', 1, 11, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '3.jpg', NULL, 1, 'user1@gmail.com'),
-(4, 'Habitación 4', 'Lorem ipsum dolor sit amet consectetur.', '250.00', 1, 9, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '4.jpg', NULL, 1, 'user1@gmail.com'),
-(5, 'Habitación 5', 'Una habitación de lujo con vistas al mar.', '400.00', 1, 14, 'Double bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '5.jpg', NULL, 1, 'user1@gmail.com'),
-(6, 'Habitación 6', 'Una habitación de lujo con vistas al mar.', '200.00', 1, 35, 'Single bed', '2024-12-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '6.jpg', NULL, 2, 'user2@gmail.com');
+(1, 'Habitación 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 350.00, 1, 13, 'Double bed', '2024-12-01T00:00:00.000Z', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '1.jpg', NULL, 1, 'user1@gmail.com'),
+(2, 'Habitación 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quibusdam sapiente animi architecto laborum repellat aperiam.', 450.00, 1, 12, 'Double bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '2.jpg', NULL, 1, 'user1@gmail.com'),
+(3, 'Habitación 3', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum voluptates repellendus cumque!', 300.00, 1, 11, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '3.jpg', NULL, 1, 'user1@gmail.com'),
+(4, 'Habitación 4', 'Lorem ipsum dolor sit amet consectetur.', 250.00, 1, 9, 'Single bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '4.jpg', NULL, 1, 'user1@gmail.com'),
+(5, 'Habitación 5', 'Una habitación de lujo con vistas al mar.', 400.00, 1, 14, 'Double bed', '2024-03-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '5.jpg', NULL, 1, 'user1@gmail.com'),
+(6, 'Habitación 6', 'Una habitación de lujo con vistas al mar.', 200.00, 1, 35, 'Single bed', '2024-12-01', 1, 1, 'Contrato de alquiler, Servicio de limpieza, Ayuda con el registro en el ayuntamiento, Servicio de mantenimiento', '6.jpg', NULL, 2, 'user2@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -155,7 +155,7 @@ CREATE TABLE `room_amenity` (
   `id` int(11) NOT NULL,
   `roomId` int(11) DEFAULT NULL,
   `amenityId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `room_amenity`
@@ -198,7 +198,7 @@ CREATE TABLE `transaction` (
   `deletedAt` datetime(6) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `room_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -221,7 +221,7 @@ CREATE TABLE `user` (
   `registration_date` datetime(6) NOT NULL DEFAULT current_timestamp(6),
   `last_update` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `deletedAt` datetime(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `user`
