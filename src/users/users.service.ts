@@ -80,6 +80,14 @@ export class UsersService {
     return user;
   }
 
+  /* async findOne(id: number): Promise<User> {
+  return this.usersRepository
+    .createQueryBuilder('user')
+    .where('user.id = :id', { id })
+    .addSelect('user.password')
+    .getOne();
+} */
+
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const { username, email, password } = updateUserDto;
 
