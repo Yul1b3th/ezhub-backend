@@ -18,7 +18,7 @@ export class UsersService {
   async checkUsernameAndEmail(username: string, email: string, id?: number) {
     if (username) {
       const existingUsername = await this.usersRepository.findOne({
-        where: { username },
+        where: { username: username.toLowerCase() },
       });
       if (existingUsername && existingUsername.id !== id) {
         throw new BadRequestException('Username is already in use');
@@ -27,7 +27,7 @@ export class UsersService {
 
     if (email) {
       const existingEmail = await this.usersRepository.findOne({
-        where: { email },
+        where: { email: email.toLowerCase() },
       });
       if (existingEmail && existingEmail.id !== id) {
         throw new BadRequestException('Email is already in use');
@@ -40,7 +40,11 @@ export class UsersService {
 
     await this.checkUsernameAndEmail(username, email);
 
-    const newUser = this.usersRepository.create(createUserDto);
+    const newUser = this.usersRepository.create({
+      ...createUserDto,
+      username: username.toLowerCase(),
+      email: email.toLowerCase(),
+    });
     return this.usersRepository.save(newUser);
   }
 
