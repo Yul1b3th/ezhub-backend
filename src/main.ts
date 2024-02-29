@@ -6,7 +6,7 @@ import { AppModule } from './app.module';
 import { SERVER_PORT } from './config/constants';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   app.enableCors(); // para habilitar CORS
 

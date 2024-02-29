@@ -9,6 +9,8 @@ import { ConfigService } from '@nestjs/config';
 
 import { Request } from 'express';
 
+import { JWT_SECRET } from '../../config/constants';
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
@@ -22,17 +24,16 @@ export class AuthGuard implements CanActivate {
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('There is no bearer token');
     }
 
     try {
-      const secret = this.configService.get<string>('JWT_SECRET');
+      const secret = this.configService.get<string>(JWT_SECRET);
       const payload = await this.jwtService.verifyAsync(token, { secret });
 
       request.user = payload;
     } catch (error) {
-      console.log('Token verification failed:', error);
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Token verification failed:', error);
     }
 
     return true;
@@ -40,6 +41,7 @@ export class AuthGuard implements CanActivate {
 
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
+    console.log('token', token);
     return type === 'Bearer' ? token : undefined;
   }
 }

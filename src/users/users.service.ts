@@ -60,11 +60,24 @@ export class UsersService {
     });
   } */
 
-  async findByUsernameOrEmailWithPassword(usernameOrEmail: string) {
+  /* async findByUsernameOrEmailWithPassword(usernameOrEmail: string) {
     return this.usersRepository.findOne({
       where: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
       select: ['id', 'username', 'email', 'password', 'role'],
     });
+  } */
+
+  async findByUsernameOrEmailWithPassword(
+    usernameOrEmail: string,
+  ): Promise<User> {
+    return this.usersRepository
+      .createQueryBuilder('user')
+      .where(
+        'user.username = :usernameOrEmail OR user.email = :usernameOrEmail',
+        { usernameOrEmail },
+      )
+      .addSelect('user.password')
+      .getOne();
   }
 
   // CRUD

@@ -33,7 +33,7 @@ export class User {
 
   @Column({ unique: true, nullable: false })
   @IsNotEmpty()
-  @Length(4, 50)
+  @Length(3, 30)
   username: string;
 
   @Column({ unique: true, nullable: false })
@@ -51,12 +51,12 @@ export class User {
 
   @Column()
   @IsNotEmpty()
-  @Length(4, 50)
+  @Length(3, 30)
   first_name: string;
 
   @Column()
   @IsNotEmpty()
-  @Length(4, 50)
+  @Length(3, 30)
   last_name: string;
 
   @Column()

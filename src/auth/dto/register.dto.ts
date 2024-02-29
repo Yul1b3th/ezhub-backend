@@ -17,7 +17,7 @@ import { IsPhone } from '../../common/decorators/is-phone.decorator';
 export class RegisterDto {
   @Transform(({ value }) => value.trim())
   @IsNotEmpty({ message: 'Username is required' })
-  @Length(4, 50, { message: 'Username must be between 4 and 20 characters' })
+  @Length(3, 30, { message: 'Username must be between 3 and 30 characters' })
   username: string;
 
   @Transform(({ value }) => value.trim())
@@ -32,13 +32,13 @@ export class RegisterDto {
   @Transform(({ value }) => value.trim())
   @IsOptional()
   @IsString({ message: 'First name must be a string' })
-  @Length(4, 50, { message: 'First name must be between 4 and 20 characters' })
+  @Length(3, 30, { message: 'First name must be between 3 and 30 characters' })
   first_name?: string;
 
   @Transform(({ value }) => value.trim())
   @IsOptional()
   @IsString({ message: 'Last name must be a string' })
-  @Length(4, 50, { message: 'Last name must be between 4 and 20 characters' })
+  @Length(3, 30, { message: 'Last name must be between 3 and 30 characters' })
   last_name?: string;
 
   @IsOptional()
