@@ -30,11 +30,11 @@ export class Room {
 
   @Column({ nullable: false })
   @IsNotEmpty()
-  @Length(4, 50)
+  @Length(3, 50)
   name: string;
 
   @Column()
-  @Length(4, 500)
+  @Length(3, 500)
   details: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })

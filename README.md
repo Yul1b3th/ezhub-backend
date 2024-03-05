@@ -63,6 +63,7 @@ El servidor estará disponible en http://localhost:8000 por defecto.
 - **POST /api/auth/register**: Registra un nuevo usuario.
 - **POST /api/auth/login**: Inicia sesión con un usuario existente.
 - **GET /api/auth/profile**: Obtiene el perfil del usuario actualmente autenticado.
+- **GET /api/auth/check-token**: Verifica el token de sesión y devuelve un nuevo token JWT válido.
 
 ### Usuarios
 

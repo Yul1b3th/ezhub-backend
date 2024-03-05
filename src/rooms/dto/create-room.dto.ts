@@ -20,13 +20,13 @@ export class CreateRoomDto {
   @Transform(({ value }) => value.trim())
   @IsNotEmpty({ message: 'Name is required' })
   @IsString({ message: 'Name must be a string' })
-  @Length(4, 50, { message: 'Name must be between 4 and 20 characters' })
+  @Length(3, 50, { message: 'Name must be between 3 and 20 characters' })
   name: string;
 
   @Transform(({ value }) => value.trim())
   @IsOptional()
   @IsString({ message: 'details must be a string' })
-  @Length(4, 500, { message: 'details must be between 4 and 500 characters' })
+  @Length(3, 500, { message: 'details must be between 3 and 500 characters' })
   details?: string;
 
   @IsNotEmpty({ message: 'Precio is required' })

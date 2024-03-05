@@ -20,16 +20,21 @@ export class Property {
 
   @Column({ nullable: false })
   @IsNotEmpty()
-  @Length(4, 50)
+  @Length(3, 50)
   name: string;
 
   @Column()
-  @Length(4, 500)
+  @Length(3, 500)
   details: string;
 
   @Column()
-  @Length(4, 300)
+  @Length(3, 300)
   address: string;
+
+  @Column()
+  //@IsNotEmpty()
+  @Length(4, 20)
+  postalCode: string;
 
   @Column()
   @IsNotEmpty()
