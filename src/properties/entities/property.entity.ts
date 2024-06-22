@@ -32,8 +32,8 @@ export class Property {
   address: string;
 
     @Column({ nullable: true })
-  //@IsNotEmpty()
-  // @Length(4, 20)
+  @IsNotEmpty()
+  @Length(4, 20)
   postalCode: string;
 
   @Column()

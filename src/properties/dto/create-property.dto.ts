@@ -31,9 +31,9 @@ export class CreatePropertyDto {
   address?: string;
 
   @Transform(({ value }) => value.trim())
-  //@IsNotEmpty({ message: 'Postal code is required' })
-  // @IsString({ message: 'Postal code must be a string' })
-  // @Length(4, 20, { message: 'Postal code must be between 4 and 20 characters' })
+  @IsNotEmpty({ message: 'Postal code is required' })
+  @IsString({ message: 'Postal code must be a string' })
+  @Length(4, 20, { message: 'Postal code must be between 4 and 20 characters' })
   postalCode?: string;
 
   @Transform(({ value }) => value.trim())
