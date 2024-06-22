@@ -49,35 +49,31 @@ export class User {
   @IsEnum(Role)
   role: Role;
 
-  @Column()
-  @IsNotEmpty()
-  @Length(3, 30)
+  @Column({ nullable: true })
+  // @Length(3, 30)
   first_name: string;
 
-  @Column()
-  @IsNotEmpty()
-  @Length(3, 30)
+  @Column({ nullable: true })
+  // @Length(3, 30)
   last_name: string;
 
-  @Column()
-  @IsNotEmpty({ message: 'Phone number is required' })
-  @IsNumber({}, { message: 'Phone number must be a number' })
+  @Column({ nullable: true })
+  // @IsNumber({}, { message: 'Phone number must be a number' })
   phone: number;
 
-  @Column()
-  @IsNumber({}, { message: 'Phone number must be a number' })
+  @Column({ nullable: true })
+  // @IsNumber({}, { message: 'Phone number must be a number' })
   whatsapp: number;
 
-  @Column()
-  @IsNotEmpty()
-  @Length(4, 300)
+  @Column({ nullable: true })
+  // @Length(4, 300)
   address: string;
 
-  @Column()
+  @Column({ nullable: true })
   @IsDate()
   date_of_birth: Date;
 
-  @Column()
+  @Column({ nullable: true })
   photo: string;
 
   @CreateDateColumn()

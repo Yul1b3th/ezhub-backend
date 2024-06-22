@@ -29,39 +29,39 @@ export class CreateUserDto {
   @Length(6, 128, { message: 'Password must be between 6 and 128 characters' })
   password: string;
 
-  @Transform(({ value }) => value.trim())
+  // @Transform(({ value }) => value.trim())
   @IsOptional()
-  @IsString({ message: 'First name must be a string' })
-  @Length(3, 30, { message: 'First name must be between 3 and 30 characters' })
+  // @IsString({ message: 'First name must be a string' })
+  // @Length(3, 30, { message: 'First name must be between 3 and 30 characters' })
   first_name?: string;
 
-  @Transform(({ value }) => value.trim())
+  // @Transform(({ value }) => value.trim())
   @IsOptional()
-  @IsString({ message: 'Last name must be a string' })
-  @Length(3, 30, { message: 'Last name must be between 3 and 30 characters' })
+  // @IsString({ message: 'Last name must be a string' })
+  // @Length(3, 30, { message: 'Last name must be between 3 and 30 characters' })
   last_name?: string;
 
   @IsOptional()
-  @IsPhone({ message: 'Phone number must be a 9-digit number without spaces' })
+  // @IsPhone({ message: 'Phone number must be a 9-digit number without spaces' })
   phone?: number;
 
   @IsOptional()
-  @IsPhone({
-    message: 'Whatsapp number must be a 9-digit number without spaces',
-  })
+  // @IsPhone({
+  //   message: 'Whatsapp number must be a 9-digit number without spaces',
+  // })
   whatsapp?: number;
 
-  @Transform(({ value }) => value.trim())
+  // @Transform(({ value }) => value.trim())
   @IsOptional()
-  @IsString({ message: 'Address must be a string' })
-  @Length(4, 300, { message: 'Address must be between 4 and 300 characters' })
+  // @IsString({ message: 'Address must be a string' })
+  // @Length(4, 300, { message: 'Address must be between 4 and 300 characters' })
   address?: string;
 
   @IsOptional()
-  @IsDate({ message: 'Invalid date' })
+  // @IsDate({ message: 'Invalid date' })
   date_of_birth?: Date;
 
-  @Transform(({ value }) => value.trim())
+  // @Transform(({ value }) => value.trim())
   @IsOptional()
   photo?: string;
 }
