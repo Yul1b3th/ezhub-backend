@@ -53,20 +53,6 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
-  /* async findByEmailWithPassword(email: string) {
-    return this.usersRepository.findOne({
-      where: { email },
-      select: ['id', 'username', 'email', 'password', 'role'],
-    });
-  } */
-
-  /* async findByUsernameOrEmailWithPassword(usernameOrEmail: string) {
-    return this.usersRepository.findOne({
-      where: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
-      select: ['id', 'username', 'email', 'password', 'role'],
-    });
-  } */
-
   async findByUsernameOrEmailWithPassword(
     usernameOrEmail: string,
   ): Promise<User> {
@@ -93,14 +79,6 @@ export class UsersService {
     return user;
   }
 
-  /* async findOne(id: number): Promise<User> {
-  return this.usersRepository
-    .createQueryBuilder('user')
-    .where('user.id = :id', { id })
-    .addSelect('user.password')
-    .getOne();
-} */
-
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const { username, email, password } = updateUserDto;
 
@@ -120,3 +98,25 @@ export class UsersService {
     return `User with ID ${id} has been deleted`;
   }
 }
+
+/* async findOne(id: number): Promise<User> {
+  return this.usersRepository
+    .createQueryBuilder('user')
+    .where('user.id = :id', { id })
+    .addSelect('user.password')
+    .getOne();
+} */
+
+/* async findByEmailWithPassword(email: string) {
+    return this.usersRepository.findOne({
+      where: { email },
+      select: ['id', 'username', 'email', 'password', 'role'],
+    });
+  } */
+
+/* async findByUsernameOrEmailWithPassword(usernameOrEmail: string) {
+    return this.usersRepository.findOne({
+      where: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+      select: ['id', 'username', 'email', 'password', 'role'],
+    });
+  } */

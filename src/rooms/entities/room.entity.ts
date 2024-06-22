@@ -42,7 +42,7 @@ export class Room {
   @IsNumber()
   precio: number;
 
-  @Column()
+  @Column({ default: false })
   @IsNotEmpty()
   @IsBoolean()
   is_available: boolean;
@@ -57,23 +57,23 @@ export class Room {
   })
   bed_type: BedType;
 
-  @Column()
+  @Column({ default: '2024-12-01' })
   @IsDateString()
   available_from: string;
 
-  @Column()
+  @Column({ default: false })
   @IsBoolean()
   utilities_included: boolean;
 
-  @Column()
+  @Column({ default: false })
   @IsBoolean()
   deposit_required: boolean;
 
-  @Column()
+  @Column({ default: false })
   @Length(0, 500)
   services_included: string;
 
-  @Column('text')
+  @Column()
   @Length(0, 5000)
   photos: string;
 
@@ -97,8 +97,8 @@ export class Room {
 
   @OneToMany(() => RoomAmenity, (roomAmenity) => roomAmenity.room)
   roomAmenities: RoomAmenity[];
+}
 
-  /* @Column()
+/* @Column()
   @Length(0, 500)
   amenityIds: string; */
-}

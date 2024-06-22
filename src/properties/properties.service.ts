@@ -61,10 +61,15 @@ export class PropertiesService {
     return this.findOne(id, user);
   }
 
-  async remove(id: number, user: UserActiveInterface): Promise<string> {
+  /* async remove(id: number, user: UserActiveInterface): Promise<string> {
     await this.findOne(id, user);
     await this.propertiesRepository.softDelete({ id });
     return `Property with ID ${id} has been deleted`;
+  } */
+
+  async remove(id: number, user: UserActiveInterface): Promise<void> {
+    const property = await this.findOne(id, user);
+    await this.propertiesRepository.softDelete(property.id);
   }
 
   private validateOwnership(property: Property, user: UserActiveInterface) {

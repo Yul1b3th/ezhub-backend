@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsLatitude,
   IsLongitude,
   IsNotEmpty,
@@ -63,6 +64,10 @@ export class CreatePropertyDto {
   @IsOptional()
   @IsNumber()
   bathrooms?: number;
+
+  @IsOptional()
+  @IsBoolean()
+  is_available?: boolean;
 
   @IsOptional()
   @IsNumber()

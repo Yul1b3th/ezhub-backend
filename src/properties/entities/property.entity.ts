@@ -8,7 +8,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 
-import { IsNotEmpty, IsNumber, Length } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsNumber, Length } from 'class-validator';
 
 import { Room } from '../../rooms/entities/room.entity';
 import { User } from '../../users/entities/user.entity';
@@ -59,6 +59,11 @@ export class Property {
   @Column()
   @IsNumber()
   bathrooms: number;
+
+  @Column({ default: false })
+  @IsNotEmpty()
+  @IsBoolean()
+  is_available: boolean;
 
   @Column()
   @IsNumber()

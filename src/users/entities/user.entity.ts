@@ -65,6 +65,10 @@ export class User {
   phone: number;
 
   @Column()
+  @IsNumber({}, { message: 'Phone number must be a number' })
+  whatsapp: number;
+
+  @Column()
   @IsNotEmpty()
   @Length(4, 300)
   address: string;

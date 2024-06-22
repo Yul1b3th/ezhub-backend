@@ -45,6 +45,12 @@ export class CreateUserDto {
   @IsPhone({ message: 'Phone number must be a 9-digit number without spaces' })
   phone?: number;
 
+  @IsOptional()
+  @IsPhone({
+    message: 'Whatsapp number must be a 9-digit number without spaces',
+  })
+  whatsapp?: number;
+
   @Transform(({ value }) => value.trim())
   @IsOptional()
   @IsString({ message: 'Address must be a string' })
