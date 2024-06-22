@@ -23,7 +23,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   // const port = +configService.get<number>(SERVER_PORT) ?? 3000;
-  const port = process.env.PORT || 8000;
+  const port = process.env.PORT ?? 3000;
 
   await app.listen(port);
   console.log(`listening on port ${await app.getUrl()}`);
