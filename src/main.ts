@@ -1,17 +1,23 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-
 import { AppModule } from './app.module';
-import { SERVER_PORT } from './config/constants';
+import { DataSource } from 'typeorm'; // Asegúrate de importar DataSource si estás usando TypeORM
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
-  app.enableCors(); // para habilitar CORS
+  // Habilitar CORS
+  app.enableCors({
+    origin: ['https://ezhub.vercel.app'], // Asegúrate de incluir el dominio del frontend
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
 
+  // Establecer prefijo global para las rutas API
   app.setGlobalPrefix('api');
 
+  // Usar validación global
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -20,12 +26,22 @@ async function bootstrap() {
     }),
   );
 
+  // Obtener el puerto del servicio de configuración o usar el puerto 3000 por defecto
   const configService = app.get(ConfigService);
+  const port = process.env.PORT || 3000;
 
-  // const port = +configService.get<number>(SERVER_PORT) ?? 3000;
-  const port = process.env.PORT ?? 3000;
+  // Probar la conexión a la base de datos (opcional)
+  const dataSource = app.get(DataSource);
+  try {
+    await dataSource.initialize();
+    console.log('Database connection established');
+  } catch (error) {
+    console.error('Error connecting to the database', error);
+  }
 
+  // Iniciar la aplicación
   await app.listen(port);
-  console.log(`listening on port ${await app.getUrl()}`);
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
+
 bootstrap();
