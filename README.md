@@ -2,6 +2,12 @@
 
 Este es el backend del proyecto que se encarga de gestionar los usuarios, propiedades, habitaciones y transacciones a través de una API RESTful. Utiliza Node.js, NestJS y TypeORM para interactuar con una base de datos MySQL. Las contraseñas de los usuarios se encriptan utilizando bcryptjs y la autenticación se maneja a través de JWT.
 
+Para más detalles sobre los endpoints y cómo utilizarlos, consulta la [Documentación de la API](https://ezhub-backend.onrender.com/docs/).
+
+## 🚀 Demo
+
+Puedes ver la demostración de la aplicación en [EZHub App](https://ezhub.vercel.app/).
+
 ## 💻 Tecnologías Utilizadas
 
 - [Node.js](https://nodejs.org/).
