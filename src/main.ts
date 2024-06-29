@@ -1,6 +1,8 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+
 import { AppModule } from './app.module';
 import { DataSource } from 'typeorm'; // Asegúrate de importar DataSource si estás usando TypeORM
 
@@ -25,6 +27,15 @@ async function bootstrap() {
       transform: true,
     }),
   );
+
+    const config = new DocumentBuilder()
+    .setTitle("Ezhub API")
+    .setDescription("API documentation for Ezhub backend")
+    .setVersion("1.0")
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup("docs", app, document);
 
   // Obtener el puerto del servicio de configuración o usar el puerto 3000 por defecto
   const configService = app.get(ConfigService);

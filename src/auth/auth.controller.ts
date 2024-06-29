@@ -12,6 +12,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginResponse } from './interfaces/login-response';
 import { User } from '../users/entities/user.entity';
 import { AuthGuard } from './guard/auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
 interface RequestWithUser extends Request {
   user: {
@@ -20,6 +21,7 @@ interface RequestWithUser extends Request {
   };
 }
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

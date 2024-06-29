@@ -1,7 +1,10 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
 import { PublicRoomsService } from './public-rooms.service';
+import { ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('public-rooms')
 @Controller('public-rooms')
 export class PublicRoomsController {
   constructor(private readonly roomsService: PublicRoomsService) {}
