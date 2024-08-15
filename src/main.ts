@@ -11,7 +11,14 @@ async function bootstrap() {
 
   // Habilitar CORS
   app.enableCors({
-    origin: ['https://ezhub.vercel.app'], // Asegúrate de incluir el dominio del frontend
+    origin: (origin, callback) => {
+      const allowedOrigins = ['https://ezhub.vercel.app', 'http://localhost'];
+      if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
@@ -29,8 +36,8 @@ async function bootstrap() {
   );
 
     const config = new DocumentBuilder()
-    .setTitle("Ezhub API")
-    .setDescription("API documentation for Ezhub backend")
+    .setTitle("EZHub API")
+    .setDescription("API documentation for EZHub backend")
     .setVersion("1.0")
     .addBearerAuth()
     .build();
