@@ -10,7 +10,7 @@ import {
   IsNumberString,
 } from 'class-validator';
 
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 
 import { IsPhone } from '../../common/decorators/is-phone.decorator';
 
@@ -45,6 +45,10 @@ export class RegisterDto {
   @IsPhone({ message: 'Phone number must be a 9-digit number without spaces' })
   phone?: number;
 
+  @IsOptional()
+  @IsPhoneNumber(null, { message: 'Invalid WhatsApp number' })
+  whatsapp?: string;
+
   @Transform(({ value }) => value.trim())
   @IsOptional()
   @IsString({ message: 'Address must be a string' })
@@ -52,6 +56,7 @@ export class RegisterDto {
   address?: string;
 
   @IsOptional()
+  @Type(() => Date)
   @IsDate({ message: 'Invalid date' })
   date_of_birth?: Date;
 
