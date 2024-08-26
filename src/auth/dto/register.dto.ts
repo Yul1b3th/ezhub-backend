@@ -46,8 +46,8 @@ export class RegisterDto {
   phone?: number;
 
   @IsOptional()
-  @IsPhoneNumber(null, { message: 'Invalid WhatsApp number' })
-  whatsapp?: string;
+  @IsPhone({ message: 'Invalid WhatsApp number' })
+  whatsapp?: number;
 
   @Transform(({ value }) => value.trim())
   @IsOptional()
